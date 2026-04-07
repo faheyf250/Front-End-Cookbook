@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Recipe App{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <h1>Welcome to Recipe App</h1>
+    <p>Browse recipes, create your own, and keep your favorite meals all in one place.</p>
+
+    <p>
+        <a href="{{ url_for('create_recipe') }}" class="main-button" style="text-decoration: none;">Create a Recipe</a>
+    </p>
+</div>
+{% endblock %}
