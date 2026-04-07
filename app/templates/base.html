@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cookbook</title>
+	<style>
+		body {margin: 0; font-family: Arial, sans-serif; }
+		.top-header { display: flex; justify-content: space-between; align-items: center; padding 10px 20px; background-color: #f4f4f4; }
+		.logo {font-size: 22px; font-weight: bold; }
+		.top-actions { display: flex; gap: 10px; }
+		.top-actions a, .top-actions button { padding: 6px 12px; background-color: #ff0038; color: white; text-decoration: none; border: none, border-radius: 4px, cursor: pointer; }
+		.navbar { background-color: #222;}
+		.nav-links { list-style: none; display: flex; justify-content: center; margin: 0; padding: 10px 0; }
+		.nav-links li {margin: 0 20px;}
+		.nav-links a { color : white; text-decoration: none; } 
+		.content { padding: 20px; text-align: center; }
+	</style>
+</head>
+<body>
+
+<div class="top-header">
+	<div class="logo">Front End Cookbook</div>
+	<div class="top-actions">
+		<a href="{{ url_for('create_recipe') }}"> + New</a>
+		<button>Login</button>
+	</div>
+</div>
+
+<div class="navbar">
+	<ul class="nav-links">
+		<li><a href="{{ url_for('dashboard') }}">Home</a></li>
+		<li><a href="#">Recipes</a></li>
+		<li><a href="#">Categories</a></li>
+	</ul>
+</div>
+
+<div class="content">
+	{% block content %}
+	<h2>My Recipes</h2>
+	{% for recipe in recipes %}
+		<p><a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">{{ recipe.title }}</a></p>
+	{% endfor %}
+	{% endblock %}
+</div>
+
+</body>
+</html>
+		

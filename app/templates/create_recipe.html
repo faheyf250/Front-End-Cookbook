@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>New Recipe</h2>
+<form method="POST">
+	{{ form.hidden_tag() }}
+	<p>Title: {{ form.recipe_name() }}</p>
+	<hr>
+	<h3>Ingredients</h3>
+	{% for ing in form.ingredients %}
+		<div>
+			{{ ing.ingredient_name(placeholder="Name") }}
+			{{ ing.amount(placeholder="Qty") }}
+			{{ ing.unit() }}
+		</div>
+	{% endfor %}
+	<button type="submit" name="add_ingredient" value="1" formvalidate>+ Add Row</button>
+	<hr>
+	<p>Steps:<br> {{form.instructions(rows=5) }}</p>
+	{{ form.submit() }}
+</form>
+{% endblock %} 
