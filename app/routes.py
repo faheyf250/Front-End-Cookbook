@@ -35,4 +35,4 @@ def create_recipe():
 @app.route('/recipe/<int:recipe_id>')
 def view_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
-    return render_template('view_recipe.html', recipe=recipe)
+    return render_template('recipe.html', recipe=recipe)

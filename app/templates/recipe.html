@@ -1,83 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}Create Recipe{% endblock %}
-
 {% block content %}
-<div class="page-container">
-    <h1>Create a Recipe</h1>
+<div class="container">
+    <h1>Recipes</h1>
 
-    <form action="{{ url_for('create_recipe') }}" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="title">Recipe Title</label>
-            <input type="text" id="title" name="title" placeholder="Enter recipe title" required>
+    {% for recipe in recipes %}
+        <div style="border:1px solid #ccc; padding:15px; margin-bottom:20px;">
+            <h2>{{ recipe.title }}</h2>
+
+            <h3>Ingredients</h3>
+            <ul>
+                {% for ing in recipe.ingredients %}
+                    <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Instructions</h3>
+            <p>{{ recipe.instructions }}</p>
+
+            {% if recipe.image_filename %}
+                <img src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}" width="200">
+            {% endif %}
         </div>
-
-        <div class="form-group">
-            <label>Ingredients</label>
-
-            <div id="ingredients-container">
-                <div class="ingredient-row">
-                    <input type="text" name="ingredient_name[]" placeholder="Ingredient" required>
-                    <input type="number" step="any" name="ingredient_qty[]" placeholder="Qty" required>
-                    <select name="ingredient_unit[]">
-                        <option value="">Unit</option>
-                        <option>cups</option>
-                        <option>tbsp</option>
-                        <option>tsp</option>
-                        <option>grams</option>
-                        <option>kg</option>
-                        <option>oz</option>
-                        <option>ml</option>
-                        <option>liters</option>
-                        <option>pieces</option>
-                    </select>
-                </div>
-            </div>
-
-            <button type="button" class="main-button" onclick="addIngredient()">+ Add Ingredient</button>
-        </div>
-
-        <div class="form-group">
-            <label for="instructions">Recipe Instructions</label>
-            <textarea id="instructions" name="instructions" rows="8" placeholder="Write recipe instructions here..." required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="recipe_image">Upload a Picture</label>
-            <input type="file" id="recipe_image" name="recipe_image" accept="image/*">
-        </div>
-
-        <button type="submit" class="main-button">Save Recipe</button>
-    </form>
+    {% endfor %}
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script>
-function addIngredient() {
-    const container = document.getElementById("ingredients-container");
-
-    const row = document.createElement("div");
-    row.classList.add("ingredient-row");
-
-    row.innerHTML = `
-        <input type="text" name="ingredient_name[]" placeholder="Ingredient" required>
-        <input type="number" step="any" name="ingredient_qty[]" placeholder="Qty" required>
-        <select name="ingredient_unit[]">
-            <option value="">Unit</option>
-            <option>cups</option>
-            <option>tbsp</option>
-            <option>tsp</option>
-            <option>grams</option>
-            <option>kg</option>
-            <option>oz</option>
-            <option>ml</option>
-            <option>liters</option>
-            <option>pieces</option>
-        </select>
-    `;
-
-    container.appendChild(row);
-}
-</script>
 {% endblock %}

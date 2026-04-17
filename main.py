@@ -1,8 +1,9 @@
 from app import app
-
+if __name__=="__main__":
+	app.run(debug=True)
 from flask import Flask, render_template, request, redirect, url_for
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="app/templates")
 
 
 recipes_list = []
@@ -13,9 +14,9 @@ def home():
     return render_template("homepage.html")
 
 
-@app.route("/recipes")
+@app.route("/recipe")
 def recipes():
-    return render_template("recipes.html", recipes=recipes_list)
+    return render_template("recipe.html", recipes=recipes_list)
 
 
 @app.route("/login")
