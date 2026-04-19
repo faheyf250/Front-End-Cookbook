@@ -1,0 +1,103 @@
+Database URI: sqlite:////home/isaiah_scott5443/Front-End-Cookbook/app/recipes.db
+Traceback (most recent call last):
+  File "/home/isaiah_scott5443/.venv/bin/flask", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 1131, in main
+    cli.main()
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 1873, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/decorators.py", line 93, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 979, in run_command
+    raise e from None
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 963, in run_command
+    app: WSGIApplication = info.load_app()  # pyright: ignore
+                           ^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 349, in load_app
+    app = locate_app(import_name, name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 245, in locate_app
+    __import__(module_name)
+  File "/home/isaiah_scott5443/Front-End-Cookbook/app/__init__.py", line 28, in <module>
+    from app import routes, models
+  File "/home/isaiah_scott5443/Front-End-Cookbook/app/routes.py", line 3, in <module>
+    from app.models import Recipe
+  File "/home/isaiah_scott5443/Front-End-Cookbook/app/models.py", line 4, in <module>
+    class Recipe(db.Model):
+  File "/home/isaiah_scott5443/Front-End-Cookbook/app/models.py", line 10, in Recipe
+    image_filename = db.Column(db.string(255), nullable=True)
+                               ^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask_sqlalchemy/extension.py", line 1008, in __getattr__
+    raise AttributeError(name)
+AttributeError: string
+Database URI: sqlite:////home/isaiah_scott5443/Front-End-Cookbook/app/recipes.db
+Traceback (most recent call last):
+  File "/home/isaiah_scott5443/.venv/bin/flask", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 1131, in main
+    cli.main()
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 1873, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/decorators.py", line 93, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 979, in run_command
+    raise e from None
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 963, in run_command
+    app: WSGIApplication = info.load_app()  # pyright: ignore
+                           ^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 349, in load_app
+    app = locate_app(import_name, name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/cli.py", line 245, in locate_app
+    __import__(module_name)
+  File "/home/isaiah_scott5443/Front-End-Cookbook/app/__init__.py", line 28, in <module>
+    from app import routes, models
+  File "/home/isaiah_scott5443/Front-End-Cookbook/app/routes.py", line 39
+    title = request.form.get('title')
+                                     ^
+IndentationError: unindent does not match any outer indentation level
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not import 'app.main'.
+Database URI: sqlite:////home/isaiah_scott5443/Front-End-Cookbook/app/recipes.db
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not import 'app.main'.
+Database URI: sqlite:////home/isaiah_scott5443/Front-End-Cookbook/app/recipes.db
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not import 'app.main'.
+Database URI: sqlite:////home/isaiah_scott5443/Front-End-Cookbook/app/recipes.db

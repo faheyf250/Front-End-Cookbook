@@ -1,0 +1,7 @@
+CREATE TABLE recipes(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+title VARCHAR(100) NOT NULL,
+ingredients TEXT NOT NULL,
+instructions TEXT NOT NULL,
+image_filename VARCHAR(255)
+);
