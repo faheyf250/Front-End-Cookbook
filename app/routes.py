@@ -1,5 +1,7 @@
+from flask import render_template, url_for, redirect, request
 from app import app, db 
-from app.models import Recipe 
+from app.models import Recipe
+from app.forms import RecipeForm
 
 
 
@@ -14,10 +16,6 @@ def recipes():
     #Code I have added for now until database is in place. This is only a temporary fix that will be removed.
     #Code provides formatting to the recipes . code can stay
     for r in recipes:
-
-                'unit': parts[1] if len(parts) > 1 else "",
-
-
  
         formatted_ingredients = []
         for item in r.ingredients.split(' | '):
@@ -85,9 +83,9 @@ def search():
     query = request.args.get("q","").strip()
 
     if query:
-        recipes = Recipe.query.filter(
-            Recipe.title.ilike(f"%{query}%")
-            Recipe.ingredients.ilike(f"%{query}%")
+            recipes = Recipe.query.filter(
+            Recipe.title.ilike(f"%{query}%"),
+            Recipe.ingredients.ilike(f"%{query}%"),
             Recipe.instructions.ilike(f"%{query}%")
         ).all()
     else:
