@@ -12,7 +12,7 @@ class IngredientForm(FlaskForm):
     ])
 
 class RecipeForm(FlaskForm):
-    recipe_name = StringField('Recipe Title', validators=[DataRequired()])
+    title = StringField('Recipe Title', validators=[DataRequired()])
     ingredients = FieldList(FormField(IngredientForm), min_entries = 1)
     instructions = TextAreaField('Preparation Steps', validators=[DataRequired()])
     submit = SubmitField('Post Recipe')

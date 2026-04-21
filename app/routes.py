@@ -3,7 +3,14 @@ from app import app, db
 from app.models import Recipe
 from app.forms import RecipeForm
 
+##This is for the image uploading##
+import os 
+from werkzeug.utils import secure_filename
+##----------------------------------------##
 
+
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def home():
@@ -53,11 +60,16 @@ def create_recipe():
 
         ing_string = " | ". join(ingredients_list)
 
+        ##Handling of the image files##
         image_file = request.files.get('recipe_image')
         filename = None
-        if image_file and image_file.filename:
-            filename = image_file.filename
 
+        if image_file and image_file.filename != '': ##Checks for a name
+            filename = secure_filename(image_file.filename)
+            image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) ##Saves file data
+            
+        ##----------------------------------------------##
+        
         new_recipe = Recipe(
 	    title = title,
             ingredients = ing_string,
