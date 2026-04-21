@@ -87,6 +87,18 @@ def create_recipe():
 @app.route('/recipe/<int:recipe_id>')
 def view_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
+
+    formatted_ingredients = []
+    for item in recipe.ingredients.split(" | "):
+        parts = item.split(" ", 2)
+        formatted_ingredients.append({
+            'quantity': parts[0] if len(parts) > 0 else "",
+            'unit': parts[1] if len(parts) > 1 else "",
+            'name': parts[2] if len(parts) > 2 else ""
+        })
+
+    recipe.ingredients = formatted_ingredients
+
     return render_template('view_recipe.html', recipe=recipe)
 
 #Search page using the database
@@ -115,3 +127,4 @@ def search():
 
         r.ingredients = formatted_ingredients
     return render_template("recipes.html", recipes=recipes, search_query=query)
+

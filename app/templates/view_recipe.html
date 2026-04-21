@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ recipe.title }}</h1>
+
+{% if recipe.image_filename %}
+    <img
+        src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}"
+        alt="{{ recipe.title }}"
+        style="max-width: 400px; height: auto;"
+    >
+{% endif %}
+
+<h3>Ingredients</h3>
+<ul>
+    {% for ing in recipe.ingredients %}
+        <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
+    {% endfor %}
+</ul>
+
+<h3>Instructions</h3>
+<p>{{ recipe.instructions }}</p>
+
+<p>
+    <a href="{{ url_for('recipes') }}">Back to Recipes</a>
+</p>
+
+{% endblock %}
