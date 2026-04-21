@@ -96,8 +96,8 @@ def search():
 
     if query:
             recipes = Recipe.query.filter(
-            Recipe.title.ilike(f"%{query}%"),
-            Recipe.ingredients.ilike(f"%{query}%"),
+            Recipe.title.ilike(f"%{query}%")|
+            Recipe.ingredients.ilike(f"%{query}%")|
             Recipe.instructions.ilike(f"%{query}%")
         ).all()
     else:
