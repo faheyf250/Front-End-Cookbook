@@ -4,6 +4,12 @@
 <div class="container">
     <h1>Recipes</h1>
 
+    <form action="{{ url_for('search') }}" method="GET" style="margin-bottom: 20px;">
+            <input type="text" name="q" placeholder="Search recipes..." style="padding: 8px; width: 60%; border-radius: 4px; border: 1px solid #ccc;">
+            <button type="submit" class="main-button">Search</button>
+            <a href="{{ url_for('recipes') }}" style="margin-left: 10px; text-decoration: none; color: #555;">Clear</a>
+    </form>
+
     {% for recipe in recipes %}
         <div style="border:1px solid #ccc; padding:15px; margin-bottom:20px;">
             <h2>{{ recipe.title }}</h2>
