@@ -38,8 +38,37 @@ def recipes():
      ########--------------------------############## 
     return render_template("recipes.html", recipes=recipes)
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    # Temporary list of accepted emails
+    # Later, this should come from your database
+    accepted_emails = ["patrick@example.com", "admin@example.com", "test@example.com"]
+
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Step 1: user submitted only email
+        if password is None:
+            if email in accepted_emails:
+                return render_template(
+                    "login.html",
+                    email=email,
+                    email_accepted=True
+                )
+            else:
+                return render_template(
+                    "login.html",
+                    email=email,
+                    email_accepted=False
+                )
+
+        # Step 2: user submitted email and password
+        print("Email:", email)
+        print("Password:", password)
+
+        return redirect(url_for("homepage"))
+
     return render_template("login.html")
 
 @app.route('/create_recipe', methods=['GET','POST'])
@@ -128,3 +157,18 @@ def search():
         r.ingredients = formatted_ingredients
     return render_template("recipes.html", recipes=recipes, search_query=query)
 
+@app.route("/create_account", methods=["GET", "POST"])
+def create_account():
+    if request.method == "POST":
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # For now, just print the data so you can verify it works.
+        # Later, this can be saved to the database.
+        print(first_name, last_name, email, password)
+
+        return redirect(url_for("login"))
+
+    return render_template("create_account.html")
