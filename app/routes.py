@@ -133,12 +133,12 @@ def view_recipe(recipe_id):
 #Search page using the database
 @app.route('/search')
 def search():
-    query = request.args.get("q","").strip()
+    query = request.args.get("q", "").strip()
 
     if query:
-            recipes = Recipe.query.filter(
-            Recipe.title.ilike(f"%{query}%")|
-            Recipe.ingredients.ilike(f"%{query}%")|
+        recipes = Recipe.query.filter(
+            Recipe.title.ilike(f"%{query}%") |
+            Recipe.ingredients.ilike(f"%{query}%") |
             Recipe.instructions.ilike(f"%{query}%")
         ).all()
     else:
@@ -146,6 +146,7 @@ def search():
 
     for r in recipes:
         formatted_ingredients = []
+
         for item in r.ingredients.split(" | "):
             parts = item.split(" ", 2)
             formatted_ingredients.append({
@@ -155,7 +156,12 @@ def search():
             })
 
         r.ingredients = formatted_ingredients
-    return render_template("recipes.html", recipes=recipes, search_query=query)
+
+    return render_template(
+        "recipes.html",
+        recipes=recipes,
+        search_query=query
+    )
 
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
@@ -172,3 +178,15 @@ def create_account():
         return redirect(url_for("login"))
 
     return render_template("create_account.html")
+
+@app.route("/rate_recipe/<int:recipe_id>", methods=["POST"])
+def rate_recipe(recipe_id):
+    recipe = Recipe.query.get_or_404(recipe_id)
+
+    rating = request.form.get("rating")
+
+    if rating:
+        recipe.rating = int(rating)
+        db.session.commit()
+
+    return redirect(url_for("recipes"))

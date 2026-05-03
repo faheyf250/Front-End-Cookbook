@@ -144,6 +144,29 @@
             border-radius: 6px;
             margin-top: 10px;
         }
+        .star-rating-form {
+    display: inline-flex;
+    gap: 2px;
+    margin-bottom: 12px;
+    }
+
+    .star-button {
+    border: none;
+    background: none;
+    color: #CF6E44;
+    font-size: 26px;
+    cursor: pointer;
+    padding: 0 2px;
+}
+
+.star-button:hover,
+.star-button:hover ~ .star-button {
+    color: #999;
+}
+
+
+
+
     </style>
 </head>
 <body>
@@ -152,7 +175,7 @@
         <div class="logo">Front End Cookbook</div>
 
         <div class="top-actions">
-            <a href="#">Search</a>
+            <a href="{{ url_for('search') }}">Search</a>
             <a href="{{ url_for('login') }}">Login</a>
         </div>
     </div>

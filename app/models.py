@@ -8,5 +8,8 @@ class Recipe(db.Model):
     ingredients = db.Column(db.Text, nullable=False)
     instructions = db.Column(db.Text, nullable=False)
     image_filename = db.Column(db.String(255), nullable=True)
+
+
     def __repr__(self):
         return self.title
+
