@@ -1,11 +1,12 @@
 from flask import render_template, url_for, redirect, request
 from app import app, db 
 from app.models import Recipe
-from app.forms import RecipeForm
+from app.forms import RecipeForm, LoginForm
 
-##This is for the image uploading##
+##This is for the image uploading & password validator##
 import os 
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename 
+from werkzeug.security import generate_password_hash, check_password_hash
 ##----------------------------------------##
 
 
@@ -38,9 +39,20 @@ def recipes():
      ########--------------------------############## 
     return render_template("recipes.html", recipes=recipes)
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+
+        if user and user.check_password(form.password.data):
+            flash("Login successful.")
+            return redirect(url_for("home"))
+
+        flash("Invalid email or password.")
+
+    return render_template("login.html", form=form)
 
 @app.route('/create_recipe', methods=['GET','POST'])
 def create_recipe():
