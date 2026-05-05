@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, request
 from app import app, db 
-from app.models import Recipe
+from app.models import Recipe, User
 from app.forms import RecipeForm, LoginForm
 
 ##This is for the image uploading & password validator##
@@ -41,51 +41,37 @@ def recipes():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-
-    form = LoginForm()
-
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-
-        if user and user.check_password(form.password.data):
-            flash("Login successful.")
-            return redirect(url_for("home"))
-
-        flash("Invalid email or password.")
-
-    return render_template("login.html", form=form)
-
-    # Temporary list of accepted emails
-    # Later, this should come from your database
-    accepted_emails = ["patrick@example.com", "admin@example.com", "test@example.com"]
-
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
 
-        # Step 1: user submitted only email
-        if password is None:
-            if email in accepted_emails:
-                return render_template(
-                    "login.html",
-                    email=email,
-                    email_accepted=True
-                )
-            else:
-                return render_template(
-                    "login.html",
-                    email=email,
-                    email_accepted=False
-                )
+        user = User.query.filter_by(email=email).first()
 
-        # Step 2: user submitted email and password
-        print("Email:", email)
-        print("Password:", password)
+        if user is None:
+            return render_template(
+                "login.html",
+                email=email,
+                email_accepted=False
+            )
 
-        return redirect(url_for("homepage"))
+        if password is None or password == "":
+            return render_template(
+                "login.html",
+                email=email,
+                email_accepted=True
+            )
+
+        if user.check_password(password):
+            return redirect(url_for("home"))
+        else:
+            return render_template(
+                "login.html",
+                email=email,
+                email_accepted=True,
+                password_error=True
+            )
 
     return render_template("login.html")
-
 
 @app.route('/create_recipe', methods=['GET','POST'])
 def create_recipe():
@@ -187,9 +173,24 @@ def create_account():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        # For now, just print the data so you can verify it works.
-        # Later, this can be saved to the database.
-        print(first_name, last_name, email, password)
+        existing_user = User.query.filter_by(email=email).first()
+
+        if existing_user:
+            return render_template(
+                "create_account.html",
+                error="An account with that email already exists."
+            )
+
+        new_user = User(
+            first_name=first_name,
+            last_name=last_name,
+            email=email
+        )
+
+        new_user.set_password(password)
+
+        db.session.add(new_user)
+        db.session.commit()
 
         return redirect(url_for("login"))
 
