@@ -13,7 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route("/")
+@app.route("/home")
 def home():
     return render_template("homepage.html")
 
@@ -41,6 +41,7 @@ def recipes():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -53,6 +54,38 @@ def login():
         flash("Invalid email or password.")
 
     return render_template("login.html", form=form)
+
+    # Temporary list of accepted emails
+    # Later, this should come from your database
+    accepted_emails = ["patrick@example.com", "admin@example.com", "test@example.com"]
+
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Step 1: user submitted only email
+        if password is None:
+            if email in accepted_emails:
+                return render_template(
+                    "login.html",
+                    email=email,
+                    email_accepted=True
+                )
+            else:
+                return render_template(
+                    "login.html",
+                    email=email,
+                    email_accepted=False
+                )
+
+        # Step 2: user submitted email and password
+        print("Email:", email)
+        print("Password:", password)
+
+        return redirect(url_for("homepage"))
+
+    return render_template("login.html")
+
 
 @app.route('/create_recipe', methods=['GET','POST'])
 def create_recipe():
@@ -116,12 +149,12 @@ def view_recipe(recipe_id):
 #Search page using the database
 @app.route('/search')
 def search():
-    query = request.args.get("q","").strip()
+    query = request.args.get("q", "").strip()
 
     if query:
-            recipes = Recipe.query.filter(
-            Recipe.title.ilike(f"%{query}%")|
-            Recipe.ingredients.ilike(f"%{query}%")|
+        recipes = Recipe.query.filter(
+            Recipe.title.ilike(f"%{query}%") |
+            Recipe.ingredients.ilike(f"%{query}%") |
             Recipe.instructions.ilike(f"%{query}%")
         ).all()
     else:
@@ -129,6 +162,7 @@ def search():
 
     for r in recipes:
         formatted_ingredients = []
+
         for item in r.ingredients.split(" | "):
             parts = item.split(" ", 2)
             formatted_ingredients.append({
@@ -138,5 +172,37 @@ def search():
             })
 
         r.ingredients = formatted_ingredients
-    return render_template("recipes.html", recipes=recipes, search_query=query)
 
+    return render_template(
+        "recipes.html",
+        recipes=recipes,
+        search_query=query
+    )
+
+@app.route("/create_account", methods=["GET", "POST"])
+def create_account():
+    if request.method == "POST":
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # For now, just print the data so you can verify it works.
+        # Later, this can be saved to the database.
+        print(first_name, last_name, email, password)
+
+        return redirect(url_for("login"))
+
+    return render_template("create_account.html")
+
+@app.route("/rate_recipe/<int:recipe_id>", methods=["POST"])
+def rate_recipe(recipe_id):
+    recipe = Recipe.query.get_or_404(recipe_id)
+
+    rating = request.form.get("rating")
+
+    if rating:
+        recipe.rating = int(rating)
+        db.session.commit()
+
+    return redirect(url_for("recipes"))

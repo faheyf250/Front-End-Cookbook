@@ -1,29 +1,60 @@
 {% extends "base.html" %}
+
 {% block content %}
 
 <h1>Recipes</h1>
 
+{% if search_query %}
+    <p>Showing results for: <strong>{{ search_query }}</strong></p>
+    <a href="{{ url_for('recipes') }}">Clear Search</a>
+{% endif %}
+
 {% for recipe in recipes %}
+
     <div class="recipe-card">
-        <h2>
-            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">
-                {{ recipe.title }}
-            </a>
-        </h2>
+        <h2>{{ recipe.title }}</h2>
+
+        <p>
+            <strong>Rating:</strong>
+
+            {% if recipe.rating and recipe.rating > 0 %}
+                {% for i in range(recipe.rating) %}
+                    ★
+                {% endfor %}
+
+                {% for i in range(5 - recipe.rating) %}
+                    ☆
+                {% endfor %}
+            {% else %}
+                No rating yet
+            {% endif %}
+        </p>
+
+<form action="{{ url_for('rate_recipe', recipe_id=recipe.id) }}" method="POST" class="star-rating-form">
+    <button type="submit" name="rating" value="1" class="star-button">★</button>
+    <button type="submit" name="rating" value="2" class="star-button">★</button>
+    <button type="submit" name="rating" value="3" class="star-button">★</button>
+    <button type="submit" name="rating" value="4" class="star-button">★</button>
+    <button type="submit" name="rating" value="5" class="star-button">★</button>
+</form>
+            </select>
+
+            <button type="submit" class="main-button">Submit Rating</button>
+        </form>
 
         <h3>Ingredients</h3>
+
         <ul>
             {% for ing in recipe.ingredients %}
                 <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
             {% endfor %}
         </ul>
 
-        <p>
-            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">
-                View Full Recipe
-            </a>
-        </p>
+        <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">
+            View Full Recipe
+        </a>
     </div>
+
 {% endfor %}
 
 {% endblock %}
