@@ -57,16 +57,15 @@
 
 <h3>Ingredients</h3>
 
-{% if recipe.formatted_ingredients %}
+{% if recipe.ingredients %}
     <ul>
-        {% for ing in recipe.formatted_ingredients %}
-            <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
+        {% for item in recipe.ingredients.split(" | ") %}
+            <li>{{ item }}</li>
         {% endfor %}
     </ul>
 {% else %}
     <p>No ingredients listed.</p>
 {% endif %}
-
 <hr>
 
 <h3>Instructions</h3>
