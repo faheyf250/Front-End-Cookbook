@@ -204,7 +204,10 @@
         <div class="logo">Front End Cookbook</div>
 
         <div class="top-actions">
-            <a href="{{ url_for('search') }}">Search</a>
+            <form action="{{ url_for('search') }}" method="GET" style="display:inline;">
+                <input type="text" name="q" placeholder="Search recipes">
+                <button type="submit">Search</button>
+            </form>
 
             {% if session.get("user_id") %}
                 <div class="user-circle">

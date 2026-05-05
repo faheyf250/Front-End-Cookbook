@@ -47,7 +47,7 @@ def recipes():
                 'name': parts[2] if len(parts) > 2 else ""
             })
 
-        r.formatted_ingredients = formatted_ingredients
+       # r.formatted_ingredients = formatted_ingredients
      ########--------------------------############## 
     return render_template("recipes.html", recipes=recipes)
 
@@ -126,6 +126,11 @@ def create_recipe():
                 image_path = os.path.join(app.config["UPLOAD_FOLDER"], image_filename)
                 image_file.save(image_path)
 
+        if isinstance(ingredient_string, list):
+            ingredient_string = " | ".join(
+                f"{item.get('quantity', '')} {item.get('unit', '')} {item.get('name', '')}".strip()
+                for item in ingredient_string
+    )
         new_recipe = Recipe(
             title=title,
             ingredients=ingredient_string,
@@ -146,12 +151,12 @@ def create_recipe():
 def view_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
 
-    recipe.formatted_ingredients = format_ingredients(recipe.ingredients)
+    #recipe.formatted_ingredients = format_ingredients(recipe.ingredients)
 
     return render_template("view_recipe.html", recipe=recipe)
 
-#Search page using the database
-@app.route('/search')
+# Search page using the database
+@app.route("/search")
 def search():
     query = request.args.get("q", "").strip()
 
@@ -167,21 +172,23 @@ def search():
     for r in recipes:
         formatted_ingredients = []
 
-        for item in r.ingredients.split(" | "):
-            parts = item.split(" ", 2)
-            formatted_ingredients.append({
-                'quantity': parts[0] if len(parts) > 0 else "",
-                'unit': parts[1] if len(parts) > 1 else "",
-                'name': parts[2] if len(parts) > 2 else ""
-            })
+        if r.ingredients:
+            for item in r.ingredients.split(" | "):
+                parts = item.split(" ", 2)
+                formatted_ingredients.append({
+                    "quantity": parts[0] if len(parts) > 0 else "",
+                    "unit": parts[1] if len(parts) > 1 else "",
+                    "name": parts[2] if len(parts) > 2 else ""
+                })
 
-        r.ingredients = formatted_ingredients
+       # r.formatted_ingredients = formatted_ingredients
 
     return render_template(
         "recipes.html",
         recipes=recipes,
         search_query=query
     )
+
 
 @app.route("/create_account", methods=["GET", "POST"])
 def create_account():
@@ -338,7 +345,7 @@ def edit_recipe(recipe_id):
 
         return redirect(url_for("view_recipe", recipe_id=recipe.id))
 
-    recipe.formatted_ingredients = format_ingredients(recipe.ingredients)
+    #recipe.formatted_ingredients = format_ingredients(recipe.ingredients)
 
     return render_template("edit_recipe.html", recipe=recipe)
 
