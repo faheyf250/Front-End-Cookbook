@@ -4549,3 +4549,382 @@ Traceback (most recent call last):
 SyntaxError: illegal target for annotation
 135.237.126.41 - - [19/Apr/2026 17:11:43] code 400, message Bad request syntax ('MGLNDD_136.115.126.19_8080')
 135.237.126.41 - - [19/Apr/2026 17:11:43] "[31m[1mMGLNDD_136.115.126.19_8080[0m" 400 -
+Database URI: sqlite:////home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/recipes.db
+ * Serving Flask app 'main.py'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://10.128.0.2:8080
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 145-248-868
+32.218.229.186 - - [05/May/2026 16:27:19] "GET /search HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:27:19] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:19] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:19] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:19] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:19] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:19] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:20] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:25] "GET /search?q=cheese HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:27:25] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:25] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:27:25] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:37] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:38] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:49] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:29:51] "GET /recipe/7 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:29:51] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:30:05] "GET /recipe/8 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:30:05] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:35:18] "GET /recipe/8 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:35:18] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:39:36] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+35.227.62.178 - - [05/May/2026 16:40:08] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:42:25] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:25] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:26] "[32mGET /create_recipe HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 16:42:27] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:42:31] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:42:31] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:31] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:42:32] "[32mGET /create_recipe HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 16:42:32] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:43:07] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:07] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:43:09] "GET /recipe/2 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:43:13] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:43:30] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:43:44] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:43:51] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:44:03] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:44:59] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:45:04] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:45:10] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:45:15] "POST /login HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/grilled-cheese.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/eggs.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/spaghetti.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/pancakes.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:45:59] "GET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:00] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+131.239.63.34 - - [05/May/2026 16:46:01] "GET /login HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:09] "POST /login HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:13] "GET /create_account HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:32] "[32mPOST /create_account HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:46:32] "GET /login HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:41] "POST /login HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:46] "[32mPOST /login HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:46:46] "GET /home HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:46] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:46] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:46:55] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:47:09] "GET /create_recipe HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:49:23] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:49:31] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:49:33] "GET /create_account HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:25] "[32mPOST /create_recipe HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:50:25] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:26] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:27] "[32mPOST /create_account HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 16:50:27] "GET /login HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:32] "GET /recipe/10 HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:36] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:36] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:37] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:50:42] "[32mPOST /login HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 16:50:42] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:50:42] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:42] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[32mPOST /rate_recipe/6 HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:50:47] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:50:47] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:47] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:50:49] "GET /recipe/2 HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[32mPOST /rate_recipe/8 HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:50:54] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:54] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:56] "GET /home HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:50:56] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:56] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:50:56] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:14] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:54:14] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:15] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:15] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:15] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:15] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:15] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:54:15] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:54:57] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:55:02] "GET /recipe/10 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:55:46] "[32mPOST /rate_recipe/10 HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 16:55:46] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:55:47] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 16:56:00] "GET /recipe/10 HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[32mPOST /delete_recipe/10 HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:56:19] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:19] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:56:20] "GET /create_recipe HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[32mPOST /create_recipe HTTP/1.1[0m" 302 -
+131.239.63.34 - - [05/May/2026 16:58:18] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 16:58:18] "GET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 17:00:16] "GET /recipes HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:16] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:17] "GET /create_recipe HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 17:00:17] "[36mGET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:18] "GET /home HTTP/1.1" 200 -
+131.239.63.34 - - [05/May/2026 17:00:18] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:18] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+131.239.63.34 - - [05/May/2026 17:00:18] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+176.65.139.177 - - [05/May/2026 17:08:14] "GET /login HTTP/1.1" 200 -
+204.76.203.30 - - [05/May/2026 17:11:02] "[33mGET http://ip-api.com/json/ HTTP/1.1[0m" 404 -
+32.218.229.186 - - [05/May/2026 17:55:34] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:34] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:35] "GET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:55:50] "GET /recipe/10 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:55:50] "[36mGET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:55:56] "GET /recipe/9 HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:55:56] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:56:22] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:57:14] "[32mGET /logout HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 17:57:14] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:57:14] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:57:14] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:57:14] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 17:57:22] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:57:59] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:58:13] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:58:24] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:58:31] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:58:36] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:58:49] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:58:54] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:59:04] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:59:10] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:59:22] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:59:27] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 17:59:35] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:02:59] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:03:59] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:04:10] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:04:15] "POST /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:04:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 18:04:26] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:04:26] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:26] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:26] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:36] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:50] "GET /search?q=garlic HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:04:50] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:04:50] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[32mPOST /rate_recipe/8 HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 18:05:32] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:32] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:35] "[32mPOST /rate_recipe/3 HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 18:05:36] "GET /recipes HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/Screenshot_2026-05-05_125605.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/air-fryer-twice-baked-potatoes-hero-top.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/eggs.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/peanut-butter-banana-cinnamon-toast-hero-261628-4000x4000-61c4ca842bcd4a648c2fa8f6e6931c0e.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:36] "[36mGET /static/uploads/Garlic_Butter_Rice.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:39] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:05:39] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:39] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:05:39] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:06:09] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:06:09] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:06:09] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:06:09] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+ * Detected change in '/home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/routes.py', reloading
+Database URI: sqlite:////home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/recipes.db
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 145-248-868
+ * Detected change in '/home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/routes.py', reloading
+Database URI: sqlite:////home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/recipes.db
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 145-248-868
+45.198.224.5 - - [05/May/2026 18:34:55] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:34:57] "[33mGET / HTTP/1.1[0m" 404 -
+32.218.229.186 - - [05/May/2026 18:35:04] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:35:04] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:35:04] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:35:04] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:35:14] "[32mGET /logout HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 18:35:14] "GET /home HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:35:14] "[36mGET /static/uploads/grilled-cheese.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:35:14] "[36mGET /static/uploads/spaghetti.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:35:14] "[36mGET /static/uploads/pancakes.jpg HTTP/1.1[0m" 304 -
+32.218.229.186 - - [05/May/2026 18:35:15] "GET /login HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:35:19] "GET /forgot_password HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:35:29] "[35m[1mPOST /forgot_password HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/app.py", line 1536, in __call__
+    return self.wsgi_app(environ, start_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/app.py", line 1514, in wsgi_app
+    response = self.handle_exception(e)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/.venv/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/routes.py", line 400, in forgot_password
+    flash("A password reset code was sent to your email.")
+NameError: name 'flash' is not defined
+32.218.229.186 - - [05/May/2026 18:35:29] "GET /forgot_password?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:35:29] "GET /forgot_password?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:35:30] "GET /forgot_password?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+ * Detected change in '/home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/routes.py', reloading
+Database URI: sqlite:////home/isaiah_scott5443/finalProject/Front-End-Cookbook/app/recipes.db
+Password reset code for scotti2@southernct.edu: 982407
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 145-248-868
+32.218.229.186 - - [05/May/2026 18:36:08] "[32mPOST /forgot_password HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 18:36:08] "GET /verify_reset_code HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:36:54] "GET /forgot_password HTTP/1.1" 200 -
+32.218.229.186 - - [05/May/2026 18:37:06] "[32mPOST /forgot_password HTTP/1.1[0m" 302 -
+32.218.229.186 - - [05/May/2026 18:37:06] "GET /verify_reset_code HTTP/1.1" 200 -

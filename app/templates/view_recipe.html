@@ -41,6 +41,14 @@
     {% endif %}
 </p>
 
+{% if session.get("user_id") == recipe.user_id %}
+    <p>
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}">
+            <button type="button">Edit Recipe</button>
+        </a>
+    </p>
+{% endif %}
+
 {% if session.get("user_id") %}
     <form action="{{ url_for('fork_recipe', recipe_id=recipe.id) }}" method="POST">
         <button type="submit" class="main-button">
