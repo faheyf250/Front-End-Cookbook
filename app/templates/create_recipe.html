@@ -3,81 +3,86 @@
 {% block title %}Create Recipe{% endblock %}
 
 {% block content %}
-<div class="page-container">
-    <h1>Create a Recipe</h1>
 
-    <form action="{{ url_for('create_recipe') }}" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="title">Recipe Title</label>
-            <input type="text" id="title" name="title" placeholder="Enter recipe title" required>
+<h1>Create a Recipe</h1>
+
+<form method="POST" action="{{ url_for('create_recipe') }}" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label for="title">Recipe Title</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+
+    <h3>Ingredients</h3>
+
+    <div id="ingredients-container">
+        <div class="ingredient-row">
+            <input type="number" name="quantity[]" placeholder="Quantity">
+
+            <select name="unit[]">
+                <option value="">Unit</option>
+                <option value="cup">cup</option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
+                <option value="oz">oz</option>
+                <option value="lb">lb</option>
+                <option value="g">g</option>
+                <option value="ml">ml</option>
+                <option value="whole">whole</option>
+            </select>
+
+            <input type="text" name="ingredient[]" placeholder="Ingredient">
         </div>
+    </div>
 
-        <div class="form-group">
-            <label>Ingredients</label>
+    <button type="button" class="main-button" id="add-ingredient-button">
+        Add Ingredient
+    </button>
 
-            <div id="ingredients-container">
-                <div class="ingredient-row">
-                    <input type="text" name="ingredient_name[]" placeholder="Ingredient" required>
-                    <input type="number" step="any" name="ingredient_qty[]" placeholder="Qty" required>
-                    <select name="ingredient_unit[]">
-                        <option value="">Unit</option>
-                        <option>cups</option>
-                        <option>tbsp</option>
-                        <option>tsp</option>
-                        <option>grams</option>
-                        <option>kg</option>
-                        <option>oz</option>
-                        <option>ml</option>
-                        <option>liters</option>
-                        <option>pieces</option>
-                    </select>
-                </div>
-            </div>
-
-            <button type="button" class="main-button" onclick="addIngredient()">+ Add Ingredient</button>
-        </div>
-
-        <div class="form-group">
-            <label for="instructions">Recipe Instructions</label>
-            <textarea id="instructions" name="instructions" rows="8" placeholder="Write recipe instructions here..." required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="recipe_image">Upload a Picture</label>
-            <input type="file" id="recipe_image" name="recipe_image" accept="image/*">
-        </div>
-
-        <button type="submit" class="main-button">Save Recipe</button>
-    </form>
+    <br><br>
+<div class="form-group">
+    <label for="recipe_image">Recipe Photo</label>
+    <input type="file" id="recipe_image" name="recipe_image" accept="image/*">
 </div>
-{% endblock %}
+    <div class="form-group">
+        <label for="instructions">Instructions</label>
+        <textarea id="instructions" name="instructions" rows="8" required></textarea>
+    </div>
 
-{% block scripts %}
+    <button type="submit" class="main-button">Create Recipe</button>
+
+</form>
+
 <script>
-function addIngredient() {
+document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.getElementById("add-ingredient-button");
     const container = document.getElementById("ingredients-container");
 
-    const row = document.createElement("div");
-    row.classList.add("ingredient-row");
+    addButton.addEventListener("click", function () {
+        const row = document.createElement("div");
+        row.classList.add("ingredient-row");
 
-    row.innerHTML = `
-        <input type="text" name="ingredient_name[]" placeholder="Ingredient" required>
-        <input type="number" step="any" name="ingredient_qty[]" placeholder="Qty" required>
-        <select name="ingredient_unit[]">
-            <option value="">Unit</option>
-            <option>cups</option>
-            <option>tbsp</option>
-            <option>tsp</option>
-            <option>grams</option>
-            <option>kg</option>
-            <option>oz</option>
-            <option>ml</option>
-            <option>liters</option>
-            <option>pieces</option>
-        </select>
-    `;
+        row.innerHTML = `
+            <input type="number" name="quantity[]" placeholder="Quantity">
 
-    container.appendChild(row);
-}
+            <select name="unit[]">
+                <option value="">Unit</option>
+                <option value="cup">cup</option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
+                <option value="oz">oz</option>
+                <option value="lb">lb</option>
+                <option value="g">g</option>
+                <option value="ml">ml</option>
+                <option value="whole">whole</option>
+            </select>
+
+            <input type="text" name="ingredient[]" placeholder="Ingredient">
+        `;
+
+        container.appendChild(row);
+    });
+});
 </script>
+
 {% endblock %}

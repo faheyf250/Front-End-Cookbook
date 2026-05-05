@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, DecimalField, SelectField, FieldList, FormField
-from wtforms.validators import DataRequired
+from wtforms import (StringField, TextAreaField, SubmitField, 
+DecimalField, SelectField, FieldList, FormField, PasswordField)
+from wtforms.validators import DataRequired, Email, Length, Regexp
 
 class IngredientForm(FlaskForm):
     class Meta: 
@@ -16,3 +17,21 @@ class RecipeForm(FlaskForm):
     ingredients = FieldList(FormField(IngredientForm), min_entries = 1)
     instructions = TextAreaField('Preparation Steps', validators=[DataRequired()])
     submit = SubmitField('Post Recipe')
+
+#login FlaskForm
+
+class LoginForm(FlaskForm):
+    email = StringField("Email", validators=[
+        DataRequired(),
+        Email()
+    ])
+
+    password = PasswordField("Password", validators=[
+        DataRequired(),
+        Length(min=8, message="Password must be at least 8 characters."),
+        Regexp(
+            r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$",
+            message="Error! Password must include a letter, number, and special character."
+        )
+    ])
+
