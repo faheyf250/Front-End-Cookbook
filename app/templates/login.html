@@ -17,6 +17,12 @@
         <button type="submit">Login</button>
     </form>
 
+    <br>
+
+    <p>
+        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+    </p>
+
 {% elif email_accepted == false %}
 
     <p>That email was not found.</p>
@@ -30,6 +36,12 @@
 
     <a href="{{ url_for('login') }}">Try another email</a>
 
+    <br><br>
+
+    <p>
+        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+    </p>
+
 {% else %}
 
     <form method="POST" action="{{ url_for('login') }}">
@@ -38,6 +50,12 @@
 
         <button type="submit">Next</button>
     </form>
+
+    <br>
+
+    <p>
+        <a href="{{ url_for('forgot_password') }}">Forgot password?</a>
+    </p>
 
 {% endif %}
 

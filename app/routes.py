@@ -1,14 +1,39 @@
-from flask import render_template, url_for, redirect, request, session
+from flask import render_template, flash, url_for, redirect, request, session
 from app import app, db 
 from app.models import Recipe, User
 from app.forms import RecipeForm, LoginForm
 
+##this is for password revoery
+import os
+import random
+import smtplib
+from email.message import EmailMessage
+from datetime import datetime, timedelta
 ##This is for the image uploading & password validator##
-import os 
+
 from werkzeug.utils import secure_filename 
 from werkzeug.security import generate_password_hash, check_password_hash
 ##----------------------------------------##
+def send_reset_code(email, code):
+    sender_email = os.environ.get("MAIL_USERNAME")
+    sender_password = os.environ.get("MAIL_PASSWORD")
 
+    if not sender_email or not sender_password:
+        print(f"Password reset code for {email}: {code}")
+        return
+
+    message = EmailMessage()
+    message["Subject"] = "Front End Cookbook Password Reset Code"
+    message["From"] = sender_email
+    message["To"] = email
+    message.set_content(
+        f"Your Front End Cookbook password reset code is: {code}\n\n"
+        "This code will expire in 10 minutes."
+    )
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(sender_email, sender_password)
+        smtp.send_message(message)
 
 UPLOAD_FOLDER = os.path.join(app.root_path, "static", "uploads")
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
@@ -350,3 +375,83 @@ def edit_recipe(recipe_id):
     return render_template("edit_recipe.html", recipe=recipe)
 
 
+##password recovery
+@app.route("/forgot_password", methods=["GET", "POST"])
+def forgot_password():
+    if request.method == "POST":
+        email = request.form.get("email", "").strip().lower()
+
+        user = User.query.filter_by(email=email).first()
+
+        if not user:
+            flash("No account found with that email.")
+            return redirect(url_for("forgot_password"))
+
+        reset_code = str(random.randint(100000, 999999))
+
+        session["reset_email"] = email
+        session["reset_code"] = reset_code
+        session["reset_code_expires"] = (
+            datetime.now() + timedelta(minutes=10)
+        ).isoformat()
+
+        send_reset_code(email, reset_code)
+
+        flash("A password reset code was sent to your email.")
+        return redirect(url_for("verify_reset_code"))
+
+    return render_template("forgot_password.html")
+
+
+@app.route("/verify_reset_code", methods=["GET", "POST"])
+def verify_reset_code():
+    if request.method == "POST":
+        entered_code = request.form.get("code", "").strip()
+        new_password = request.form.get("new_password", "")
+        confirm_password = request.form.get("confirm_password", "")
+
+        saved_email = session.get("reset_email")
+        saved_code = session.get("reset_code")
+        expires_at = session.get("reset_code_expires")
+
+        if not saved_email or not saved_code or not expires_at:
+            flash("Password reset session expired. Please try again.")
+            return redirect(url_for("forgot_password"))
+
+        if datetime.now() > datetime.fromisoformat(expires_at):
+            session.pop("reset_email", None)
+            session.pop("reset_code", None)
+            session.pop("reset_code_expires", None)
+
+            flash("Reset code expired. Please request a new code.")
+            return redirect(url_for("forgot_password"))
+
+        if entered_code != saved_code:
+            flash("Invalid reset code.")
+            return redirect(url_for("verify_reset_code"))
+
+        if len(new_password) < 8:
+            flash("Password must be at least 8 characters long.")
+            return redirect(url_for("verify_reset_code"))
+
+        if new_password != confirm_password:
+            flash("Passwords do not match.")
+            return redirect(url_for("verify_reset_code"))
+
+        user = User.query.filter_by(email=saved_email).first()
+
+        if not user:
+            flash("Account could not be found.")
+            return redirect(url_for("forgot_password"))
+
+        user.password_hash = generate_password_hash(new_password)
+        db.session.commit()
+
+        session.pop("reset_email", None)
+        session.pop("reset_code", None)
+        session.pop("reset_code_expires", None)
+
+        flash("Password updated successfully. Please log in.")
+        return redirect(url_for("login"))
+
+    return render_template("verify_reset_code.html")

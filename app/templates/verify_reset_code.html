@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Reset Password</h1>
+
+<p>Enter the reset code sent to your email and choose a new password.</p>
+
+<form method="POST" action="{{ url_for('verify_reset_code') }}">
+    <label>Reset Code</label>
+    <input type="text" name="code" required>
+
+    <label>New Password</label>
+    <input type="password" name="new_password" required minlength="8">
+
+    <label>Confirm New Password</label>
+    <input type="password" name="confirm_password" required minlength="8">
+
+    <button type="submit">Update Password</button>
+</form>
+
+<p>
+    <a href="{{ url_for('forgot_password') }}">Request a new code</a>
+</p>
+
+{% endblock %}
