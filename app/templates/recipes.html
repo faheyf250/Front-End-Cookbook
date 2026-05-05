@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Recipes{% endblock %}
+
 {% block content %}
 
 <h1>Recipes</h1>
@@ -9,52 +11,68 @@
     <a href="{{ url_for('recipes') }}">Clear Search</a>
 {% endif %}
 
-{% for recipe in recipes %}
+{% if recipes %}
 
-    <div class="recipe-card">
-        <h2>{{ recipe.title }}</h2>
+    {% for recipe in recipes %}
 
-        <p>
-            <strong>Rating:</strong>
+        <div class="recipe-card">
+            <h2>{{ recipe.title }}</h2>
+	    {% if recipe.image_filename %}
+   	         <img src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}" alt="{{ recipe.title }}">
+	    {% endif %}
 
-            {% if recipe.rating and recipe.rating > 0 %}
-                {% for i in range(recipe.rating) %}
-                    ★
-                {% endfor %}
-
-                {% for i in range(5 - recipe.rating) %}
-                    ☆
-                {% endfor %}
-            {% else %}
-                No rating yet
+            {% if recipe.author %}
+                <p>
+                    <strong>Created by:</strong>
+                    {{ recipe.author.first_name }} {{ recipe.author.last_name }}
+                </p>
             {% endif %}
-        </p>
 
-<form action="{{ url_for('rate_recipe', recipe_id=recipe.id) }}" method="POST" class="star-rating-form">
-    <button type="submit" name="rating" value="1" class="star-button">★</button>
-    <button type="submit" name="rating" value="2" class="star-button">★</button>
-    <button type="submit" name="rating" value="3" class="star-button">★</button>
-    <button type="submit" name="rating" value="4" class="star-button">★</button>
-    <button type="submit" name="rating" value="5" class="star-button">★</button>
-</form>
-            </select>
+            <p>
+                <strong>Rating:</strong>
 
-            <button type="submit" class="main-button">Submit Rating</button>
-        </form>
+                {% if recipe.rating and recipe.rating > 0 %}
+                    {% for i in range(recipe.rating) %}
+                        ★
+                    {% endfor %}
 
-        <h3>Ingredients</h3>
+                    {% for i in range(5 - recipe.rating) %}
+                        ☆
+                    {% endfor %}
+                {% else %}
+                    No rating yet
+                {% endif %}
+            </p>
 
-        <ul>
-            {% for ing in recipe.ingredients %}
-                <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
-            {% endfor %}
-        </ul>
+            <form action="{{ url_for('rate_recipe', recipe_id=recipe.id) }}" method="POST" class="star-rating-form">
+                <button type="submit" name="rating" value="1" class="star-button">★</button>
+                <button type="submit" name="rating" value="2" class="star-button">★</button>
+                <button type="submit" name="rating" value="3" class="star-button">★</button>
+                <button type="submit" name="rating" value="4" class="star-button">★</button>
+                <button type="submit" name="rating" value="5" class="star-button">★</button>
+            </form>
 
-        <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">
-            View Full Recipe
-        </a>
-    </div>
+            <br>
 
-{% endfor %}
+            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">
+                View Full Recipe
+            </a>
+
+            {% if session.get("user_id") == recipe.user_id %}
+                <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST">
+                    <button type="submit" class="delete-button">
+                        Delete Recipe
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No recipes found.</p>
+
+{% endif %}
 
 {% endblock %}

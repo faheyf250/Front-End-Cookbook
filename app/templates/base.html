@@ -20,7 +20,7 @@
             background-color: #f4f4f4;
             border-bottom: 1px solid #ddd;
         }
-
+        
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -42,7 +42,11 @@
             cursor: pointer;
             font-size: 14px;
         }
-
+	.recipe-card img {
+    max-width: 250px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
         .top-actions a:hover,
         .top-actions button:hover {
             background-color: #555;
@@ -70,7 +74,19 @@
         .nav-links a:hover {
             text-decoration: underline;
         }
-
+   
+        .user-circle {
+    width: 34px;
+    height: 34px;
+    background-color: #CF6E44;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+}
         .page-container {
             max-width: 900px;
             margin: 30px auto;
@@ -138,6 +154,19 @@
             margin-bottom: 20px;
             background-color: #fff;
         }
+	.delete-button {
+    margin-top: 10px;
+    padding: 8px 14px;
+    border: none;
+    background-color: #b23b3b;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #7f2929;
+}
 
         .recipe-card img {
             max-width: 250px;
@@ -176,7 +205,16 @@
 
         <div class="top-actions">
             <a href="{{ url_for('search') }}">Search</a>
-            <a href="{{ url_for('login') }}">Login</a>
+
+            {% if session.get("user_id") %}
+                <div class="user-circle">
+                    {{ session.get("user_initials") }}
+                </div>
+
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
         </div>
     </div>
 
@@ -185,15 +223,11 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('recipes') }}">Recipes</a></li>
             <li><a href="{{ url_for('create_recipe') }}">Create Recipe</a></li>
-
         </ul>
     </div>
+
     <main class="page-container">
-     {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </main>
-
-     {% block scripts %}{% endblock %}
-	
-
-</body>
-</html>
+    </body>
+    </html>

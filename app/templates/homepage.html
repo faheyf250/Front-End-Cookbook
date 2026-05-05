@@ -1,14 +1,56 @@
 {% extends "base.html" %}
 
-{% block title %}Home - Recipe App{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="page-container">
-    <h1>Welcome to Recipe App</h1>
-    <p>Browse recipes, create your own, and keep your favorite meals all in one place.</p>
 
-    <p>
-        <a href="{{ url_for('create_recipe') }}" class="main-button" style="text-decoration: none;">Create a Recipe</a>
-    </p>
-</div>
+<h1>Welcome to Front End Cookbook</h1>
+
+<p>Find, create, and share your favorite recipes.</p>
+
+<h2>Top Rated Recipes</h2>
+
+{% if top_recipes %}
+
+    {% for recipe in top_recipes %}
+
+        <div class="recipe-card">
+            <h3>{{ recipe.title }}</h3>
+
+            {% if recipe.image_filename %}
+                <img src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}" alt="{{ recipe.title }}">
+            {% endif %}
+
+            {% if recipe.author %}
+                <p>
+                    <strong>Created by:</strong>
+                    {{ recipe.author.first_name }} {{ recipe.author.last_name }}
+                </p>
+            {% endif %}
+
+            <p>
+                <strong>Rating:</strong>
+
+                {% for i in range(recipe.rating) %}
+                    ★
+                {% endfor %}
+
+                {% for i in range(5 - recipe.rating) %}
+                    ☆
+                {% endfor %}
+            </p>
+
+            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}">
+                View Recipe
+            </a>
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No rated recipes yet.</p>
+
+{% endif %}
+
 {% endblock %}

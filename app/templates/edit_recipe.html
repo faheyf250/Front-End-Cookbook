@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Recipe{% endblock %}
+
+{% block content %}
+
+<h1>Edit Recipe</h1>
+
+<form method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label for="title">Recipe Title</label>
+        <input type="text" id="title" name="title" value="{{ recipe.title }}" required>
+    </div>
+
+    <h3>Ingredients</h3>
+
+    <div id="ingredients-container">
+        {% if recipe.formatted_ingredients %}
+            {% for ing in recipe.formatted_ingredients %}
+                <div class="ingredient-row">
+                    <input type="number" name="quantity[]" placeholder="Quantity" value="{{ ing.quantity }}">
+
+                    <select name="unit[]">
+                        <option value="">Unit</option>
+                        <option value="cup" {% if ing.unit == "cup" %}selected{% endif %}>cup</option>
+                        <option value="tbsp" {% if ing.unit == "tbsp" %}selected{% endif %}>tbsp</option>
+                        <option value="tsp" {% if ing.unit == "tsp" %}selected{% endif %}>tsp</option>
+                        <option value="oz" {% if ing.unit == "oz" %}selected{% endif %}>oz</option>
+                        <option value="lb" {% if ing.unit == "lb" %}selected{% endif %}>lb</option>
+                        <option value="g" {% if ing.unit == "g" %}selected{% endif %}>g</option>
+                        <option value="ml" {% if ing.unit == "ml" %}selected{% endif %}>ml</option>
+                        <option value="whole" {% if ing.unit == "whole" %}selected{% endif %}>whole</option>
+                    </select>
+
+                    <input type="text" name="ingredient[]" placeholder="Ingredient" value="{{ ing.name }}">
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="ingredient-row">
+                <input type="number" name="quantity[]" placeholder="Quantity">
+
+                <select name="unit[]">
+                    <option value="">Unit</option>
+                    <option value="cup">cup</option>
+                    <option value="tbsp">tbsp</option>
+                    <option value="tsp">tsp</option>
+                    <option value="oz">oz</option>
+                    <option value="lb">lb</option>
+                    <option value="g">g</option>
+                    <option value="ml">ml</option>
+                    <option value="whole">whole</option>
+                </select>
+
+                <input type="text" name="ingredient[]" placeholder="Ingredient">
+            </div>
+        {% endif %}
+    </div>
+
+    <button type="button" class="main-button" id="add-ingredient-button">
+        Add Ingredient
+    </button>
+
+    <br><br>
+
+    {% if recipe.image_filename %}
+        <p>Current Photo:</p>
+        <img 
+            src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}" 
+            alt="{{ recipe.title }}"
+            style="max-width: 250px; border-radius: 8px; margin-bottom: 15px;"
+        >
+    {% endif %}
+
+    <div class="form-group">
+        <label for="recipe_image">Change Recipe Photo</label>
+        <input type="file" id="recipe_image" name="recipe_image" accept="image/*">
+    </div>
+
+    <div class="form-group">
+        <label for="instructions">Instructions</label>
+        <textarea id="instructions" name="instructions" rows="8" required>{{ recipe.instructions }}</textarea>
+    </div>
+
+    <button type="submit" class="main-button">Save Changes</button>
+
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const addButton = document.getElementById("add-ingredient-button");
+    const container = document.getElementById("ingredients-container");
+
+    addButton.addEventListener("click", function () {
+        const row = document.createElement("div");
+        row.classList.add("ingredient-row");
+
+        row.innerHTML = `
+            <input type="number" name="quantity[]" placeholder="Quantity">
+
+            <select name="unit[]">
+                <option value="">Unit</option>
+                <option value="cup">cup</option>
+                <option value="tbsp">tbsp</option>
+                <option value="tsp">tsp</option>
+                <option value="oz">oz</option>
+                <option value="lb">lb</option>
+                <option value="g">g</option>
+                <option value="ml">ml</option>
+                <option value="whole">whole</option>
+            </select>
+
+            <input type="text" name="ingredient[]" placeholder="Ingredient">
+        `;
+
+        container.appendChild(row);
+    });
+});
+</script>
+
+{% endblock %}

@@ -10,6 +10,7 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=False)	
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
+    recipes = db.relationship("Recipe", backref="author", lazy=True)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -20,14 +21,21 @@ class User(db.Model):
 
 # Define the DB schema
 class Recipe(db.Model):
-    __tablename__='recipes'
-    id = db.Column(db.Integer,primary_key=True)
+    __tablename__ = "recipes"
+
+    id = db.Column(db.Integer, primary_key=True)
+
     title = db.Column(db.String(100), nullable=False)
     ingredients = db.Column(db.Text, nullable=False)
     instructions = db.Column(db.Text, nullable=False)
     image_filename = db.Column(db.String(255), nullable=True)
 
+    rating = db.Column(db.Integer, default=0)
+
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=True)
+
+    # New: remembers which recipe this was copied from
+    forked_from_id = db.Column(db.Integer, db.ForeignKey("recipes.id"), nullable=True)
 
     def __repr__(self):
         return self.title
-

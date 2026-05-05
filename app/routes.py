@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, session
 from app import app, db 
 from app.models import Recipe, User
 from app.forms import RecipeForm, LoginForm
@@ -10,12 +10,24 @@ from werkzeug.security import generate_password_hash, check_password_hash
 ##----------------------------------------##
 
 
-UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+UPLOAD_FOLDER = os.path.join(app.root_path, "static", "uploads")
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+
+def allowed_file(filename):
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route("/home")
 def home():
-    return render_template("homepage.html")
+    top_recipes = Recipe.query.filter(
+        Recipe.rating > 0
+    ).order_by(
+        Recipe.rating.desc()
+    ).limit(3).all()
+
+    return render_template("homepage.html", top_recipes=top_recipes)
 
 #Page that displays all recipes
 @app.route("/recipes")
@@ -35,7 +47,7 @@ def recipes():
                 'name': parts[2] if len(parts) > 2 else ""
             })
 
-        r.ingredients = formatted_ingredients
+        r.formatted_ingredients = formatted_ingredients
      ########--------------------------############## 
     return render_template("recipes.html", recipes=recipes)
 
@@ -62,75 +74,81 @@ def login():
             )
 
         if user.check_password(password):
+            session["user_id"] = user.id
+            session["first_name"] = user.first_name
+            session["last_name"] = user.last_name
+            session["user_initials"] = user.first_name[0].upper() + user.last_name[0].upper()
+
             return redirect(url_for("home"))
-        else:
-            return render_template(
-                "login.html",
-                email=email,
-                email_accepted=True,
-                password_error=True
-            )
+
+        return render_template(
+            "login.html",
+            email=email,
+            email_accepted=True,
+            password_error=True
+        )
 
     return render_template("login.html")
 
-@app.route('/create_recipe', methods=['GET','POST'])
+@app.route("/create_recipe", methods=["GET", "POST"])
 def create_recipe():
-#created recipe should now be stored in the database, and viewable on receipes page
-    if request.method == 'POST':
-        title = request.form.get('title')
-        instructions = request.form.get('instructions')
+    if "user_id" not in session:
+        return redirect(url_for("login"))
 
-        ingredient_names = request.form.getlist('ingredient_name[]')
-        ingredient_qtys = request.form.getlist('ingredient_qty[]')
-        ingredient_units = request.form.getlist('ingredient_unit[]')
+    if request.method == "POST":
+        title = request.form.get("title")
+        instructions = request.form.get("instructions")
 
-        ingredients_list  = []
-        for qty, unit, name in zip(ingredient_qtys, ingredient_units, ingredient_names):
-            ingredient_text = f"{qty} {unit} {name}".strip()
-            ingredients_list .append(ingredient_text)
+        quantities = request.form.getlist("quantity[]")
+        units = request.form.getlist("unit[]")
+        ingredients = request.form.getlist("ingredient[]")
 
-        ing_string = " | ". join(ingredients_list)
+        ingredient_parts = []
 
-        ##Handling of the image files##
-        image_file = request.files.get('recipe_image')
-        filename = None
+        for quantity, unit, ingredient in zip(quantities, units, ingredients):
+            quantity = quantity.strip()
+            unit = unit.strip()
+            ingredient = ingredient.strip()
 
-        if image_file and image_file.filename != '': ##Checks for a name
-            filename = secure_filename(image_file.filename)
-            image_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename)) ##Saves file data
-            
-        ##----------------------------------------------##
-        
+            if ingredient == "":
+                continue
+
+            ingredient_parts.append(f"{quantity} {unit} {ingredient}".strip())
+
+        ingredient_string = " | ".join(ingredient_parts)
+
+        image_file = request.files.get("recipe_image")
+        image_filename = None
+
+        if image_file and image_file.filename != "":
+            if allowed_file(image_file.filename):
+                image_filename = secure_filename(image_file.filename)
+                image_path = os.path.join(app.config["UPLOAD_FOLDER"], image_filename)
+                image_file.save(image_path)
+
         new_recipe = Recipe(
-	    title = title,
-            ingredients = ing_string,
+            title=title,
+            ingredients=ingredient_string,
             instructions=instructions,
-            image_filename=filename
+            image_filename=image_filename,
+            user_id=session["user_id"]
         )
 
         db.session.add(new_recipe)
         db.session.commit()
 
-        return redirect(url_for('recipes'))
-    return render_template('create_recipe.html')
+        return redirect(url_for("recipes"))
+
+    return render_template("create_recipe.html")
 
 #Page to view individual recipe
-@app.route('/recipe/<int:recipe_id>')
+@app.route("/recipe/<int:recipe_id>")
 def view_recipe(recipe_id):
     recipe = Recipe.query.get_or_404(recipe_id)
 
-    formatted_ingredients = []
-    for item in recipe.ingredients.split(" | "):
-        parts = item.split(" ", 2)
-        formatted_ingredients.append({
-            'quantity': parts[0] if len(parts) > 0 else "",
-            'unit': parts[1] if len(parts) > 1 else "",
-            'name': parts[2] if len(parts) > 2 else ""
-        })
+    recipe.formatted_ingredients = format_ingredients(recipe.ingredients)
 
-    recipe.ingredients = formatted_ingredients
-
-    return render_template('view_recipe.html', recipe=recipe)
+    return render_template("view_recipe.html", recipe=recipe)
 
 #Search page using the database
 @app.route('/search')
@@ -207,3 +225,121 @@ def rate_recipe(recipe_id):
         db.session.commit()
 
     return redirect(url_for("recipes"))
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("home"))
+
+
+@app.route("/delete_recipe/<int:recipe_id>", methods=["POST"])
+def delete_recipe(recipe_id):
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    recipe = Recipe.query.get_or_404(recipe_id)
+
+    if recipe.user_id != session["user_id"]:
+        return redirect(url_for("recipes"))
+
+    db.session.delete(recipe)
+    db.session.commit()
+
+    return redirect(url_for("recipes"))
+
+def format_ingredients(ingredients_string):
+    formatted_ingredients = []
+
+    if not ingredients_string:
+        return formatted_ingredients
+
+    for item in ingredients_string.split(" | "):
+        item = item.strip()
+
+        if item == "":
+            continue
+
+        parts = item.split(" ", 2)
+
+        formatted_ingredients.append({
+            "quantity": parts[0] if len(parts) > 0 else "",
+            "unit": parts[1] if len(parts) > 1 else "",
+            "name": parts[2] if len(parts) > 2 else ""
+        })
+
+    return formatted_ingredients
+
+@app.route("/fork_recipe/<int:recipe_id>", methods=["POST"])
+def fork_recipe(recipe_id):
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    original_recipe = Recipe.query.get_or_404(recipe_id)
+
+    forked_recipe = Recipe(
+        title=original_recipe.title + " copy",
+        ingredients=original_recipe.ingredients,
+        instructions=original_recipe.instructions,
+        image_filename=original_recipe.image_filename,
+        rating=0,
+        user_id=session["user_id"],
+        forked_from_id=original_recipe.id
+    )
+
+    db.session.add(forked_recipe)
+    db.session.commit()
+
+    return redirect(url_for("edit_recipe", recipe_id=forked_recipe.id))
+
+@app.route("/edit_recipe/<int:recipe_id>", methods=["GET", "POST"])
+def edit_recipe(recipe_id):
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    recipe = Recipe.query.get_or_404(recipe_id)
+
+    if recipe.user_id != session["user_id"]:
+        return redirect(url_for("recipes"))
+
+    if request.method == "POST":
+        title = request.form.get("title")
+        instructions = request.form.get("instructions")
+
+        quantities = request.form.getlist("quantity[]")
+        units = request.form.getlist("unit[]")
+        ingredients = request.form.getlist("ingredient[]")
+
+        ingredient_parts = []
+
+        for quantity, unit, ingredient in zip(quantities, units, ingredients):
+            quantity = quantity.strip()
+            unit = unit.strip()
+            ingredient = ingredient.strip()
+
+            if ingredient == "":
+                continue
+
+            ingredient_parts.append(f"{quantity} {unit} {ingredient}".strip())
+
+        recipe.title = title
+        recipe.instructions = instructions
+        recipe.ingredients = " | ".join(ingredient_parts)
+
+        image_file = request.files.get("recipe_image")
+
+        if image_file and image_file.filename != "":
+            if allowed_file(image_file.filename):
+                image_filename = secure_filename(image_file.filename)
+                image_path = os.path.join(app.config["UPLOAD_FOLDER"], image_filename)
+                image_file.save(image_path)
+                recipe.image_filename = image_filename
+
+        db.session.commit()
+
+        return redirect(url_for("view_recipe", recipe_id=recipe.id))
+
+    recipe.formatted_ingredients = format_ingredients(recipe.ingredients)
+
+    return render_template("edit_recipe.html", recipe=recipe)
+
+

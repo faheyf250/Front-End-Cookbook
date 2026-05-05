@@ -1,28 +1,80 @@
 {% extends "base.html" %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
 {% block content %}
 
 <h1>{{ recipe.title }}</h1>
 
 {% if recipe.image_filename %}
-    <img
-        src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}"
+    <img 
+        src="{{ url_for('static', filename='uploads/' + recipe.image_filename) }}" 
         alt="{{ recipe.title }}"
-        style="max-width: 400px; height: auto;"
+        style="max-width: 400px; border-radius: 8px; margin: 15px 0;"
     >
 {% endif %}
 
-<h3>Ingredients</h3>
-<ul>
-    {% for ing in recipe.ingredients %}
-        <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
-    {% endfor %}
-</ul>
+{% if recipe.author %}
+    <p>
+        <strong>Created by:</strong>
+        {{ recipe.author.first_name }} {{ recipe.author.last_name }}
+    </p>
+{% endif %}
 
-<h3>Instructions</h3>
-<p>{{ recipe.instructions }}</p>
+{% if recipe.forked_from_id %}
+    <p><em>Forked from recipe #{{ recipe.forked_from_id }}</em></p>
+{% endif %}
 
 <p>
-    <a href="{{ url_for('recipes') }}">Back to Recipes</a>
+    <strong>Rating:</strong>
+
+    {% if recipe.rating and recipe.rating > 0 %}
+        {% for i in range(recipe.rating) %}
+            ★
+        {% endfor %}
+
+        {% for i in range(5 - recipe.rating) %}
+            ☆
+        {% endfor %}
+    {% else %}
+        No rating yet
+    {% endif %}
 </p>
+
+{% if session.get("user_id") %}
+    <form action="{{ url_for('fork_recipe', recipe_id=recipe.id) }}" method="POST">
+        <button type="submit" class="main-button">
+            Fork Recipe
+        </button>
+    </form>
+{% else %}
+    <p>
+        <a href="{{ url_for('login') }}">Log in</a> to fork this recipe.
+    </p>
+{% endif %}
+
+<hr>
+
+<h3>Ingredients</h3>
+
+{% if recipe.formatted_ingredients %}
+    <ul>
+        {% for ing in recipe.formatted_ingredients %}
+            <li>{{ ing.quantity }} {{ ing.unit }} {{ ing.name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No ingredients listed.</p>
+{% endif %}
+
+<hr>
+
+<h3>Instructions</h3>
+
+<p>{{ recipe.instructions }}</p>
+
+<br>
+
+<a href="{{ url_for('recipes') }}">Back to Recipes</a>
 
 {% endblock %}
